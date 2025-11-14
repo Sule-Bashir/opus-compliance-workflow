@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compliance Workflow Operator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        .button-group { text-align: center; margin: 20px 0; }
+        button { padding: 12px 24px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .primary { background: #3498db; color: white; }
+        .secondary { background: #95a5a6; color: white; }
+        .status { padding: 15px; margin: 15px 0; border-radius: 5px; border-left: 4px solid; }
+        .info { background: #d6eaf8; border-color: #3498db; }
+        .success { background: #d5f4e6; border-color: #27ae60; }
+        .error { background: #fadbd8; border-color: #e74c3c; }
+        .results { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Compliance Workflow Operator</h1>
+        <p style="text-align: center; color: #666;">Manage your Opus compliance workflows</p>
+        
+        <div class="button-group">
+            <button class="primary" onclick="triggerWorkflow()">Run Compliance Check</button>
+            <button class="secondary" onclick="checkHealth()">Check System Health</button>
+            <button class="secondary" onclick="loadSampleData()">Load Sample Data</button>
+        </div>
+        
+        <div id="status" class="status info hidden">
+            <!-- Status messages will appear here -->
+        </div>
+        
+        <div id="results" class="results hidden">
+            <h3>Workflow Results</h3>
+            <pre id="results-content"></pre>
+        </div>
+
+        <div id="sample-data" class="results hidden">
+            <h3>Sample Data Loaded</h3>
+            <pre id="sample-data-content"></pre>
+        </div>
+    </div>
+
+    <script>
+        // These will be updated when we have actual endpoints
+        const MOCK_API_URL = 'https://your-repl-url.repl.co';
+        const OPUS_API_URL = 'https://your-opus-api-endpoint.com';
+
+        async function triggerWorkflow() {
+            showStatus('Starting compliance workflow...', 'info');
+            hideResults();
+            
+            try {
+                // Simulate API call - replace with actual Opus API later
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const mockResult = {
+                    workflow_id: "comp_001",
+                    status: "completed",
+                    decisions: {
+                        sanctions_check: "clear",
+                        credit_score: "low_risk", 
+                        overall_risk: "low",
+                        review_required: false
+                    },
+                    timestamp: new Date().toISOString(),
+                    audit_trail: "https://opus.com/audit/comp_001"
+                };
+                
+                showStatus('Workflow completed successfully!', 'success');
+                showResults(mockResult);
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+            }
+        }
+        
+        async function checkHealth() {
+            showStatus('Checking system health...', 'info');
+            hideResults();
+            
+            try {
+                // Simulate health check
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                const healthStatus = {
+                    mock_apis: "healthy",
+                    opus_connection: "connected",
+                    database: "online",
+                    timestamp: new Date().toISOString()
+                };
+                
+                showStatus('All systems operational!', 'success');
+                showResults(healthStatus);
+            } catch (error) {
+                showStatus('Health check failed', 'error');
+            }
+        }
+
+        function loadSampleData() {
+            showStatus('Loading sample compliance data...', 'info');
+            hideResults();
+            
+            const sampleData = {
+                customers: [
+                    { id: "cust_001", name: "John Doe", risk_level: "low" },
+                    { id: "cust_002", name: "Maria Silva", risk_level: "medium" },
+                    { id: "cust_003", name: "Ahmed Khan", risk_level: "high" }
+                ],
+                documents: ["passport.pdf", "id_card.jpg", "utility_bill.pdf"],
+                transactions: [
+                    { amount: 1500, currency: "USD", flagged: false },
+                    { amount: 250, currency: "BRL", flagged: false },
+                    { amount: 50000, currency: "USD", flagged: true }
+                ]
+            };
+            
+            showStatus('Sample data loaded successfully!', 'success');
+            document.getElementById('sample-data-content').textContent = JSON.stringify(sampleData, null, 2);
+            document.getElementById('sample-data').classList.remove('hidden');
+        }
+        
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.classList.remove('hidden');
+        }
+        
+        function showResults(data) {
+            document.getElementById('results-content').textContent = JSON.stringify(data, null, 2);
+            document.getElementById('results').classList.remove('hidden');
+        }
+
+        function hideResults() {
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('sample-data').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
