@@ -1,0 +1,4 @@
+customer_id,name,email,country,document_type
+cust_001,John Doe,john@example.com,US,passport
+cust_002,Maria Silva,maria@example.com,BR,id_card  
+cust_003,Ahmed Khan,ahmed@example.com,AE,drivers_license
