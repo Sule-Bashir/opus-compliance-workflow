@@ -1,0 +1,16 @@
+[
+  {
+    "transaction_id": "txn_001",
+    "customer_id": "cust_001", 
+    "amount": 1500.00,
+    "currency": "USD",
+    "date": "2024-01-15"
+  },
+  {
+    "transaction_id": "txn_002",
+    "customer_id": "cust_002",
+    "amount": 250.00,
+    "currency": "BRL", 
+    "date": "2024-01-16"
+  }
+]
